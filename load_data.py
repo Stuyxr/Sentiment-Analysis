@@ -69,7 +69,7 @@ def get_data(load_from_file=True):
             for cut_sentence in cut_data:
                 f.write(cut_sentence)
         model = KeyedVectors.load_word2vec_format('sgns.zhihu.bigram', binary=False)
-        for word, vector in zip(model.vocab, model.vectors):
+        for word, vector in zip(model.key_to_index, model.vectors):
             dic[word] = vector
         vec_data = []
         for sentence in cut_data:
