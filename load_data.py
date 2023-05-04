@@ -68,7 +68,7 @@ def get_data(load_from_file=True):
                 cut_data.append(' '.join(list(jieba.cut(sentence))))
             for cut_sentence in cut_data:
                 f.write(cut_sentence)
-        model = KeyedVectors.load_word2vec_format('sgns.zhihu.bigram', binary=False)
+        model = KeyedVectors.load_word2vec_format('sgns.weibo.bigram', binary=False)
         for word, vector in zip(model.key_to_index, model.vectors):
             dic[word] = vector
         vec_data = []
@@ -95,7 +95,7 @@ def change_order(set, target):
 
 
 
-# get_data(False)
+get_data(False)
 
 
 
