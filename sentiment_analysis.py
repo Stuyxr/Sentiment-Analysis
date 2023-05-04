@@ -63,7 +63,7 @@ def main():
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(net.parameters(), lr=0.001)
     batch = 32
-    for epoch in range(1000):
+    for epoch in range(50):
         avg_loss = 0
         cnt = 0
         net.train()

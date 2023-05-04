@@ -1,4 +1,5 @@
 sgns.zhihu.bigram
+sgns.weibo.bigram
 test_data.pt
 train_data.pt
 label.pt
