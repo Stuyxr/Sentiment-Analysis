@@ -2,7 +2,7 @@
 
 <https://github.com/Embedding/Chinese-Word-Vectors> 
 
-sgns.zhihu.bigram
+sgns.weibo.bigram
 
 ### 运行环境
 
@@ -11,6 +11,7 @@ pytorch1.0.1
 ### 训练模型
 
 ```
+python load_data.py
 python sentiment_analysis.py
 ```
 
