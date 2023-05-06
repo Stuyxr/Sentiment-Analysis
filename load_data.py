@@ -45,8 +45,14 @@ def get_vec(sentence):
         i += 1
     return vec
 
-def get_test_data():
-    test_raw_data = read_data(test_data_path)
+def get_test_data(is_load_sentence=False, input_sentence=""):
+    if not is_load_sentence:
+        test_raw_data= read_data(test_data_path)
+    elif is_load_sentence and isinstance(input_sentence, list):
+        test_raw_data = input_sentence
+    else:
+        test_raw_data = [input_sentence]
+
     test_cut_data = []
     for sentence in test_raw_data:
         test_cut_data.append(' '.join(list(jieba.cut(sentence))))
@@ -57,7 +63,8 @@ def get_test_data():
     torch.save(test_vec_data, test_path)
     return test_vec_data
 
-def get_data(load_from_file=True):
+
+def get_data(load_from_file=True, is_load_sentece = True, input_sentence=""):
     if not load_from_file:
         raw_data = read_data(pos_data_path) + read_data(neg_data_path)
         cut_data = []
@@ -80,11 +87,16 @@ def get_data(load_from_file=True):
         vec_data, label = change_order(vec_data, label)
         torch.save(vec_data, train_data_path)
         torch.save(label, label_data_path)
-        test_data = get_test_data()
+        if is_load_sentece:
+            test_data = get_test_data(True, input_sentence)
+        else:
+            test_data = get_test_data()
     vec_data = torch.load(train_data_path)
     label = torch.load(label_data_path)
     test_data = torch.load(test_path)
     return vec_data.permute(1, 0, 2), label, test_data.permute(1, 0, 2)
+
+
 
 def change_order(set, target):
     permutation = np.random.permutation(target.shape[0])
